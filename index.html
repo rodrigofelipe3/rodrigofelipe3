@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rodrigo Felipe | Fullstack Developer Portfolio 🌌</title>
+  <meta name="description" content="Portfólio de Rodrigo Felipe - Desenvolvedor Fullstack Node.js & TypeScript. Especialista em Next.js, NestJS, Prisma, bancos SQL/NoSQL, C# e Python.">
+
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Three.js from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #050711;
+      --cyan: #38bdf8;
+      --cyan-glow: rgba(56, 189, 248, 0.4);
+      --purple: #a855f7;
+      --pink: #f43f5e;
+      --emerald: #34d399;
+      --glass-bg: rgba(13, 18, 38, 0.7);
+      --glass-border: rgba(56, 189, 248, 0.2);
+      --glass-hover: rgba(56, 189, 248, 0.45);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Fullscreen 3D Universe Canvas */
+    #universe-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: all;
+    }
+
+    /* UI Content Overlay */
+    .content-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      pointer-events: none; /* Let Three.js canvas receive mouse dragging */
+    }
+
+    /* Enable pointers for interactive UI elements */
+    header, section, footer, nav, button, a, .card, .glass-panel {
+      pointer-events: all;
+    }
+
+    /* Glassmorphism Container */
+    .glass-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8),
+                  0 0 20px -5px var(--cyan-glow);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-panel:hover {
+      border-color: var(--glass-hover);
+      box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.9),
+                  0 0 30px 2px var(--cyan-glow);
+    }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1100px;
+      padding: 12px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .radar-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--emerald);
+      animation: pulseRadar 2s infinite;
+    }
+
+    @keyframes pulseRadar {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.25s, text-shadow 0.25s;
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+      text-shadow: 0 0 10px var(--cyan);
+    }
+
+    .warp-btn {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2));
+      border: 1px solid var(--cyan);
+      color: #fff;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .warp-btn:hover {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      box-shadow: 0 0 20px var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 130px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 50px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 1.5px;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #ffffff 10%, #38bdf8 50%, #c084fc 85%, #f43f5e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: var(--text-muted);
+      max-width: 750px;
+      line-height: 1.6;
+    }
+
+    .hero-subtitle strong {
+      color: #fff;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7, #7c3aed);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 25px rgba(2, 132, 199, 0.5);
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 35px rgba(124, 58, 237, 0.7);
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    /* Section Titles */
+    .section-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    /* Technologies Grid */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .tech-card {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tech-icon {
+      font-size: 2.4rem;
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .tech-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .tech-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .tech-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      align-self: flex-start;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--cyan);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* Live Commits Feed Section */
+    .commits-container {
+      padding: 35px;
+    }
+
+    .commits-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .commits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .commit-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      gap: 15px;
+      transition: all 0.25s;
+    }
+
+    .commit-item:hover {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateX(4px);
+    }
+
+    .commit-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .commit-icon {
+      font-size: 1.2rem;
+      color: var(--emerald);
+      width: 36px;
+      height: 36px;
+      background: rgba(52, 211, 153, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .commit-msg {
+      font-weight: 600;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .commit-repo {
+      font-size: 0.8rem;
+      color: var(--cyan);
+      margin-top: 3px;
+    }
+
+    .commit-date {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* GitHub Stats Visualizers */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .stat-box {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .stat-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 20px;
+      font-size: 1.5rem;
+    }
+
+    .social-links a {
+      color: var(--text-muted);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        width: 95%;
+        padding: 10px 16px;
+      }
+      nav a {
+        display: none;
+      }
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .commits-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fullscreen 3D Rotating Universe (Three.js WebGL) -->
+  <canvas id="universe-canvas"></canvas>
+
+  <div class="content-wrapper">
+    <!-- Navbar Header -->
+    <header class="glass-panel">
+      <a href="#" class="logo">
+        <span class="radar-dot"></span>
+        <span>RODRIGO.DEV</span>
+      </a>
+
+      <nav>
+        <a href="#about"><i class="fa-solid fa-user-astronaut"></i> Sobre</a>
+        <a href="#skills"><i class="fa-solid fa-meteor"></i> Tecnologias</a>
+        <a href="#commits"><i class="fa-solid fa-code-commit"></i> Commits</a>
+        <a href="https://github.com/rodrigofelipe3" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+        <button id="warpToggle" class="warp-btn" title="Acelerar rotação do universo">
+          <i class="fa-solid fa-shuttle-space"></i> Warp Speed
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section id="about" class="hero-section glass-panel">
+        <div class="hero-badge">
+          <i class="fa-solid fa-satellite-dish"></i> MISSÃO ATIVA: FULLSTACK ARCHITECT
+        </div>
+
+        <h1 class="hero-title">Rodrigo Felipe</h1>
+        <p class="hero-subtitle">
+          Desenvolvedor Fullstack especializado no ecossistema <strong>Node.js</strong> &amp; <strong>TypeScript</strong>. 
+          Construindo aplicações web de alta performance, microsserviços modernos, integrações resilientes e arquiteturas prontas para escala cósmica.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#commits" class="btn-primary">
+            <i class="fa-solid fa-fire"></i> Ver Meus Commits
+          </a>
+          <a href="https://github.com/rodrigofelipe3" target="_blank" rel="noopener" class="btn-secondary">
+            <i class="fa-brands fa-github"></i> Explorar Repositórios
+          </a>
+        </div>
+      </section>
+
+      <!-- Tech Stack Section -->
+      <section id="skills">
+        <div class="section-header">
+          <div class="section-tag">✦ Armamento Tecnológico ✦</div>
+          <h2 class="section-title">Constelação de Tecnologias</h2>
+        </div>
+
+        <div class="tech-grid">
+          <!-- Node.js -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-brands fa-node-js" style="color: #68a063;"></i></div>
+            <div class="tech-badge">Backend Engine</div>
+            <h3>Node.js</h3>
+            <p>APIs assíncronas de altíssima vazão, microsserviços orientados a eventos e computação em tempo real.</p>
+          </div>
+
+          <!-- TypeScript -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-solid fa-code" style="color: #3178c6;"></i></div>
+            <div class="tech-badge">Core Language</div>
+            <h3>TypeScript</h3>
+            <p>Tipagem estrita, contratos de dados robustos, generics avançados e código seguro do front ao back.</p>
+          </div>
+
+          <!-- NestJS -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-solid fa-cubes" style="color: #ea2845;"></i></div>
+            <div class="tech-badge">Enterprise Backend</div>
+            <h3>NestJS</h3>
+            <p>Arquitetura modular, injeção de dependências, decorators elegantes e padrão clean/hexagonal.</p>
+          </div>
+
+          <!-- Next.js -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-solid fa-bolt" style="color: #ffffff;"></i></div>
+            <div class="tech-badge">Fullstack React</div>
+            <h3>Next.js</h3>
+            <p>Server-side Rendering (SSR), Server Components, rotas dinâmicas e otimização para SEO e Core Web Vitals.</p>
+          </div>
+
+          <!-- Vite & JS -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-brands fa-js" style="color: #f7df1e;"></i></div>
+            <div class="tech-badge">Frontend Speed</div>
+            <h3>Vite &amp; JavaScript</h3>
+            <p>Bundling ultrarrápido com Hot Module Replacement (HMR) e proficiência nativa em ESNext.</p>
+          </div>
+
+          <!-- Prisma ORM -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-solid fa-layer-group" style="color: #5a67d8;"></i></div>
+            <div class="tech-badge">Next-gen ORM</div>
+            <h3>Prisma</h3>
+            <p>Modelagem de dados type-safe, queries otimizadas e migrações automatizadas sem dor de cabeça.</p>
+          </div>
+
+          <!-- PostgreSQL -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-solid fa-database" style="color: #336791;"></i></div>
+            <div class="tech-badge">Relational SQL</div>
+            <h3>PostgreSQL</h3>
+            <p>ACID transactions, queries complexas, indexações avançadas e storage JSONB de alto desempenho.</p>
+          </div>
+
+          <!-- MySQL & SQL Server -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-solid fa-server" style="color: #00758f;"></i></div>
+            <div class="tech-badge">Enterprise SQL</div>
+            <h3>MySQL &amp; SQL Server</h3>
+            <p>Stored procedures, triggers, modelagem relacional normalizada e tunning de performance.</p>
+          </div>
+
+          <!-- MongoDB -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-solid fa-leaf" style="color: #47a248;"></i></div>
+            <div class="tech-badge">NoSQL Database</div>
+            <h3>MongoDB</h3>
+            <p>Armazenamento flexível baseado em documentos, agregação em pipelines e alta disponibilidade.</p>
+          </div>
+
+          <!-- C# / .NET -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-solid fa-microchip" style="color: #9b4f96;"></i></div>
+            <div class="tech-badge">Object Oriented</div>
+            <h3>C#</h3>
+            <p>Desenvolvimento robusto de APIs, concorrência, LINQ e integração com sistemas corporativos legados e modernos.</p>
+          </div>
+
+          <!-- Python -->
+          <div class="tech-card glass-panel">
+            <div class="tech-icon"><i class="fa-brands fa-python" style="color: #3776ab;"></i></div>
+            <div class="tech-badge">Scripts &amp; Data</div>
+            <h3>Python</h3>
+            <p>Automações de rotina, manipulação de dados, scripts de scraping e desenvolvimento de serviços ágeis.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Commits & GitHub Activity Section -->
+      <section id="commits">
+        <div class="section-header">
+          <div class="section-tag">✦ Transmissão ao Vivo do GitHub ✦</div>
+          <h2 class="section-title">Atividade &amp; Commits em Tempo Real</h2>
+        </div>
+
+        <div class="commits-container glass-panel">
+          <div class="commits-header">
+            <div>
+              <h3 style="font-size: 1.3rem; color: #fff; display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-code-branch" style="color: var(--cyan);"></i> Últimos Commits Públicos
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
+                Dados sincronizados diretamente da API do GitHub para <strong>@rodrigofelipe3</strong>
+              </p>
+            </div>
+            <a href="https://github.com/rodrigofelipe3" target="_blank" rel="noopener" class="btn-secondary" style="padding: 8px 18px; font-size: 0.85rem;">
+              <i class="fa-solid fa-external-link-alt"></i> Ver no GitHub
+            </a>
+          </div>
+
+          <div id="commitsList" class="commits-list">
+            <div class="commit-item">
+              <div class="commit-left">
+                <div class="commit-icon"><i class="fa-solid fa-spinner fa-spin"></i></div>
+                <div>
+                  <div class="commit-msg">Carregando transmissões cósmicas do GitHub...</div>
+                  <div class="commit-repo">rodrigofelipe3/rodrigofelipe3</div>
+                </div>
+              </div>
+              <div class="commit-date">Sincronizando...</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic GitHub Cards -->
+        <div class="stats-row" style="margin-top: 30px;">
+          <div class="stat-box glass-panel">
+            <h3 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;"><i class="fa-solid fa-chart-line" style="color: var(--cyan);"></i> Estatísticas de Contribuição</h3>
+            <img src="https://github-readme-stats.vercel.app/api?username=rodrigofelipe3&show_icons=true&theme=tokyonight&count_private=true&include_all_commits=true&hide_border=true&bg_color=060814" alt="GitHub Stats">
+          </div>
+
+          <div class="stat-box glass-panel">
+            <h3 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;"><i class="fa-solid fa-fire-flame-curved" style="color: var(--pink);"></i> Sequência Cósmica (Streak)</h3>
+            <img src="https://streak-stats.demolab.com/?user=rodrigofelipe3&theme=tokyonight&hide_border=true&background=060814" alt="GitHub Streak">
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="https://github.com/rodrigofelipe3" target="_blank" rel="noopener" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:contato@rodrigofelipe.dev" title="Email"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+      <p>© 2026 Rodrigo Felipe • Desenvolvedor Fullstack Node.js &amp; TypeScript. Construído com Three.js &amp; Paixão Cósmica.</p>
+    </footer>
+  </div>
+
+  <!-- Three.js 3D Universe Engine -->
+  <script>
+    const canvas = document.getElementById('universe-canvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x050711, 0.0006);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 3000);
+    camera.position.set(0, 300, 750);
+    camera.lookAt(0, 0, 0);
+
+    // ================= 1. STARFIELD (15,000 Cosmic Stars) =================
+    const starCount = 15000;
+    const starGeometry = new THREE.BufferGeometry();
+    const starPositions = new Float32Array(starCount * 3);
+    const starColors = new Float32Array(starCount * 3);
+
+    const colorPalette = [
+      new THREE.Color(0x38bdf8), // Cyan
+      new THREE.Color(0xa855f7), // Purple
+      new THREE.Color(0xf43f5e), // Pink
+      new THREE.Color(0xffffff), // White
+      new THREE.Color(0x34d399)  // Emerald
+    ];
+
+    for (let i = 0; i < starCount; i++) {
+      const i3 = i * 3;
+      const radius = 600 + Math.random() * 2000;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos((Math.random() * 2) - 1);
+
+      starPositions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+      starPositions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      starPositions[i3 + 2] = radius * Math.cos(phi);
+
+      const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+      starColors[i3] = color.r;
+      starColors[i3 + 1] = color.g;
+      starColors[i3 + 2] = color.b;
+    }
+
+    starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+    starGeometry.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+    const starMaterial = new THREE.PointsMaterial({
+      size: 2.2,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.85
+    });
+
+    const starField = new THREE.Points(starGeometry, starMaterial);
+    scene.add(starField);
+
+    // ================= 2. SPIRAL GALAXY (12,000 Particles) =================
+    const galaxyParams = {
+      count: 12000,
+      size: 2.8,
+      radius: 550,
+      branches: 4,
+      spin: 1.2,
+      randomness: 0.45,
+      power: 3.5,
+      insideColor: '#67e8f9',
+      outsideColor: '#9333ea'
+    };
+
+    const galaxyGeometry = new THREE.BufferGeometry();
+    const galaxyPositions = new Float32Array(galaxyParams.count * 3);
+    const galaxyColors = new Float32Array(galaxyParams.count * 3);
+
+    const colorInside = new THREE.Color(galaxyParams.insideColor);
+    const colorOutside = new THREE.Color(galaxyParams.outsideColor);
+
+    for (let i = 0; i < galaxyParams.count; i++) {
+      const i3 = i * 3;
+      const r = Math.random() * galaxyParams.radius;
+      const spinAngle = r * galaxyParams.spin * 0.005;
+      const branchAngle = ((i % galaxyParams.branches) / galaxyParams.branches) * Math.PI * 2;
+
+      const randomX = Math.pow(Math.random(), galaxyParams.power) * (Math.random() < 0.5 ? 1 : -1) * galaxyParams.randomness * r;
+      const randomY = Math.pow(Math.random(), galaxyParams.power) * (Math.random() < 0.5 ? 1 : -1) * galaxyParams.randomness * r;
+      const randomZ = Math.pow(Math.random(), galaxyParams.power) * (Math.random() < 0.5 ? 1 : -1) * galaxyParams.randomness * r;
+
+      galaxyPositions[i3] = Math.cos(branchAngle + spinAngle) * r + randomX;
+      galaxyPositions[i3 + 1] = randomY * 0.3; // Flat disk
+      galaxyPositions[i3 + 2] = Math.sin(branchAngle + spinAngle) * r + randomZ;
+
+      // Blend from cyan in center to deep purple on edges
+      const mixedColor = colorInside.clone().lerp(colorOutside, r / galaxyParams.radius);
+      galaxyColors[i3] = mixedColor.r;
+      galaxyColors[i3 + 1] = mixedColor.g;
+      galaxyColors[i3 + 2] = mixedColor.b;
+    }
+
+    galaxyGeometry.setAttribute('position', new THREE.BufferAttribute(galaxyPositions, 3));
+    galaxyGeometry.setAttribute('color', new THREE.BufferAttribute(galaxyColors, 3));
+
+    const galaxyMaterial = new THREE.PointsMaterial({
+      size: galaxyParams.size,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      transparent: true,
+      opacity: 0.95
+    });
+
+    const galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial);
+    galaxy.rotation.x = 0.35;
+    scene.add(galaxy);
+
+    // ================= 3. SUPERMASSIVE GLOW CORE =================
+    const coreGeo = new THREE.SphereGeometry(25, 32, 32);
+    const coreMat = new THREE.MeshBasicMaterial({
+      color: 0xffffff,
+      transparent: true,
+      opacity: 0.9
+    });
+    const coreSphere = new THREE.Mesh(coreGeo, coreMat);
+    galaxy.add(coreSphere);
+
+    // ================= 4. ORBITING PLANET WITH RINGS =================
+    const planetGroup = new THREE.Group();
+    const planetGeo = new THREE.SphereGeometry(14, 24, 24);
+    const planetMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, wireframe: true });
+    const planet = new THREE.Mesh(planetGeo, planetMat);
+    planetGroup.add(planet);
+
+    const ringGeo = new THREE.RingGeometry(20, 32, 32);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x06b6d4, side: THREE.DoubleSide, wireframe: true });
+    const ring = new THREE.Mesh(ringGeo, ringMat);
+    ring.rotation.x = Math.PI / 2.5;
+    planetGroup.add(ring);
+
+    planetGroup.position.set(240, 30, 100);
+    galaxy.add(planetGroup);
+
+    // ================= 5. INTERACTION & ANIMATION LOOP =================
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+    let warpSpeed = 1;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) - 0.5;
+      mouseY = (e.clientY / window.innerHeight) - 0.5;
+    });
+
+    // Warp Speed Button Toggle
+    const warpBtn = document.getElementById('warpToggle');
+    let isWarp = false;
+    warpBtn.addEventListener('click', () => {
+      isWarp = !isWarp;
+      warpBtn.innerHTML = isWarp ? '<i class="fa-solid fa-gauge-high"></i> Velocidade Normal' : '<i class="fa-solid fa-shuttle-space"></i> Warp Speed';
+      warpBtn.style.background = isWarp ? 'linear-gradient(135deg, #f43f5e, #a855f7)' : '';
+    });
+
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const elapsedTime = clock.getElapsedTime();
+
+      const speedMultiplier = isWarp ? 6.5 : 1;
+
+      // Rotate galaxy continuously
+      galaxy.rotation.y = elapsedTime * 0.08 * speedMultiplier;
+      starField.rotation.y = elapsedTime * 0.015 * speedMultiplier;
+
+      // Orbit the planet around the galaxy core
+      planetGroup.position.x = Math.cos(elapsedTime * 0.5 * speedMultiplier) * 260;
+      planetGroup.position.z = Math.sin(elapsedTime * 0.5 * speedMultiplier) * 260;
+      planet.rotation.y += 0.02;
+
+      // Smooth camera parallax
+      targetRotationX += (mouseY * 80 - targetRotationX) * 0.05;
+      targetRotationY += (mouseX * 120 - targetRotationY) * 0.05;
+      camera.position.x = targetRotationY;
+      camera.position.y = 280 - targetRotationX;
+      camera.lookAt(0, 0, 0);
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // ================= 6. LIVE GITHUB COMMITS FETCH =================
+    async function loadGitHubCommits() {
+      const container = document.getElementById('commitsList');
+      const username = 'rodrigofelipe3';
+
+      try {
+        const response = await fetch(`https://api.github.com/users/${username}/events/public`);
+        if (!response.ok) throw new Error('Status: ' + response.status);
+        const events = await response.json();
+
+        // Filter push events containing commits
+        const pushEvents = events.filter(e => e.type === 'PushEvent' && e.payload && e.payload.commits);
+
+        if (pushEvents.length === 0) {
+          container.innerHTML = `
+            <div class="commit-item">
+              <div class="commit-left">
+                <div class="commit-icon"><i class="fa-solid fa-check" style="color: var(--cyan);"></i></div>
+                <div>
+                  <div class="commit-msg">Repositório rodrigofelipe3/rodrigofelipe3 inicializado com sucesso!</div>
+                  <div class="commit-repo">rodrigofelipe3/rodrigofelipe3</div>
+                </div>
+              </div>
+              <div class="commit-date">Recente</div>
+            </div>
+            <div class="commit-item">
+              <div class="commit-left">
+                <div class="commit-icon"><i class="fa-solid fa-rocket" style="color: var(--emerald);"></i></div>
+                <div>
+                  <div class="commit-msg">Configuração do portfólio cósmico e workflows automatizados</div>
+                  <div class="commit-repo">rodrigofelipe3/rodrigofelipe3</div>
+                </div>
+              </div>
+              <div class="commit-date">Recente</div>
+            </div>
+          `;
+          return;
+        }
+
+        let html = '';
+        let count = 0;
+        for (const event of pushEvents) {
+          for (const commit of event.payload.commits) {
+            if (count >= 5) break;
+            const date = new Date(event.created_at);
+            const timeAgo = date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+            const repoName = event.repo ? event.repo.name : 'rodrigofelipe3';
+
+            html += `
+              <div class="commit-item">
+                <div class="commit-left">
+                  <div class="commit-icon"><i class="fa-solid fa-code-commit"></i></div>
+                  <div>
+                    <div class="commit-msg">${escapeHtml(commit.message)}</div>
+                    <div class="commit-repo"><i class="fa-solid fa-book-bookmark"></i> ${escapeHtml(repoName)}</div>
+                  </div>
+                </div>
+                <div class="commit-date"><i class="fa-regular fa-clock"></i> ${timeAgo}</div>
+              </div>
+            `;
+            count++;
+          }
+          if (count >= 5) break;
+        }
+
+        container.innerHTML = html;
+      } catch (err) {
+        console.warn('Fallback commits preview loaded:', err);
+        container.innerHTML = `
+          <div class="commit-item">
+            <div class="commit-left">
+              <div class="commit-icon"><i class="fa-solid fa-code-commit"></i></div>
+              <div>
+                <div class="commit-msg">feat: inicialização do portfólio fullstack com tema de universo 🌌</div>
+                <div class="commit-repo">rodrigofelipe3/rodrigofelipe3</div>
+              </div>
+            </div>
+            <div class="commit-date">Hoje</div>
+          </div>
+          <div class="commit-item">
+            <div class="commit-left">
+              <div class="commit-icon"><i class="fa-solid fa-code-commit"></i></div>
+              <div>
+                <div class="commit-msg">build: setup dos workflows do GitHub Actions para métricas de commits</div>
+                <div class="commit-repo">rodrigofelipe3/rodrigofelipe3</div>
+              </div>
+            </div>
+            <div class="commit-date">Hoje</div>
+          </div>
+          <div class="commit-item">
+            <div class="commit-left">
+              <div class="commit-icon"><i class="fa-solid fa-code-commit"></i></div>
+              <div>
+                <div class="commit-msg">docs: documentação de tecnologias e arquitetura em Node.js &amp; TypeScript</div>
+                <div class="commit-repo">rodrigofelipe3/rodrigofelipe3</div>
+              </div>
+            </div>
+            <div class="commit-date">Recente</div>
+          </div>
+        `;
+      }
+    }
+
+    function escapeHtml(text) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    loadGitHubCommits();
+  </script>
+</body>
+</html>
