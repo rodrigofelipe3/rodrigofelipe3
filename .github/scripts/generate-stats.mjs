@@ -33,7 +33,7 @@ const query = `
       issues {
         totalCount
       }
-      repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
+      repositories(first: 100, ownerAffiliations: OWNER, privacy: PUBLIC, isFork: false) {
         nodes {
           stargazers {
             totalCount
@@ -58,7 +58,11 @@ async function fetchStats() {
 
     const json = await res.json();
     if (json.errors) {
-      console.error('GraphQL Errors:', json.errors);
+      console.warn('GraphQL partial warnings (ignoring restricted org repos):', json.errors.map(e => e.message));
+    }
+
+    if (!json.data || !json.data.viewer) {
+      console.error('Fatal GraphQL error - No viewer data:', json);
       process.exit(1);
     }
 
@@ -72,7 +76,15 @@ async function fetchStats() {
       }
     }
 
-    const totalStars = viewer.repositories.nodes.reduce((acc, repo) => acc + (repo.stargazers.totalCount || 0), 0);
+    let totalStars = 0;
+    if (viewer.repositories && viewer.repositories.nodes) {
+      totalStars = viewer.repositories.nodes.reduce((acc, repo) => {
+        if (repo && repo.stargazers && typeof repo.stargazers.totalCount === 'number') {
+          return acc + repo.stargazers.totalCount;
+        }
+        return acc;
+      }, 0);
+    }
     const totalPRs = viewer.pullRequests.totalCount || 0;
     const totalIssues = viewer.issues.totalCount || 0;
 
