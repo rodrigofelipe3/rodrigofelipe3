@@ -131,7 +131,7 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
     <tr>
       <td align="center">
         <a href="https://github.com/rodrigofelipe3">
-          <img src="https://github-stats-extended.vercel.app/api?username=rodrigofelipe3&show_icons=true&theme=tokyonight&count_private=true&include_all_commits=true&hide_border=true&bg_color=060814&title_color=38bdf8&icon_color=34d399&text_color=94a3b8&cache_seconds=1800" alt="GitHub Stats" width="410px" />
+          <img src="https://raw.githubusercontent.com/rodrigofelipe3/rodrigofelipe3/main/assets/github-stats.svg" alt="GitHub Stats" width="410px" />
         </a>
       </td>
       <td align="center">

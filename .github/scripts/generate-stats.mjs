@@ -1,0 +1,162 @@
+import fs from 'fs';
+import path from 'path';
+
+const token = process.env.METRICS_TOKEN || process.env.GITHUB_TOKEN;
+
+if (!token) {
+  console.error('Error: No GITHUB_TOKEN or METRICS_TOKEN provided.');
+  process.exit(1);
+}
+
+const currentYear = new Date().getFullYear();
+const startYear = 2022; // User joined in 2022
+
+let yearQueries = '';
+for (let y = startYear; y <= currentYear; y++) {
+  yearQueries += `
+    y${y}: contributionsCollection(from: "${y}-01-01T00:00:00Z", to: "${y}-12-31T23:59:59Z") {
+      totalCommitContributions
+      restrictedContributionsCount
+    }
+  `;
+}
+
+const query = `
+  query {
+    viewer {
+      login
+      name
+      ${yearQueries}
+      pullRequests {
+        totalCount
+      }
+      issues {
+        totalCount
+      }
+      repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
+        nodes {
+          stargazers {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+`;
+
+async function fetchStats() {
+  try {
+    const res = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        Authorization: `bearer ${token}`,
+        'Content-Type': 'application/json',
+        'User-Agent': 'NodeJS-GraphQL'
+      },
+      body: JSON.stringify({ query })
+    });
+
+    const json = await res.json();
+    if (json.errors) {
+      console.error('GraphQL Errors:', json.errors);
+      process.exit(1);
+    }
+
+    const viewer = json.data.viewer;
+    let totalCommits = 0;
+
+    for (let y = startYear; y <= currentYear; y++) {
+      const collection = viewer[`y${y}`];
+      if (collection) {
+        totalCommits += (collection.totalCommitContributions || 0) + (collection.restrictedContributionsCount || 0);
+      }
+    }
+
+    const totalStars = viewer.repositories.nodes.reduce((acc, repo) => acc + (repo.stargazers.totalCount || 0), 0);
+    const totalPRs = viewer.pullRequests.totalCount || 0;
+    const totalIssues = viewer.issues.totalCount || 0;
+
+    // Calculate rank
+    let rank = 'B';
+    if (totalCommits > 5000) rank = 'A+';
+    else if (totalCommits > 2000) rank = 'A';
+    else if (totalCommits > 500) rank = 'B+';
+
+    const formattedCommits = totalCommits.toLocaleString('en-US');
+
+    const svg = `
+<svg width="467" height="195" viewBox="0 0 467 195" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
+  <style>
+    .header { font: 700 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: #38bdf8; }
+    .stat { font: 600 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: #94a3b8; }
+    .stat-val { font: 700 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: #f8fafc; }
+    .icon { fill: #34d399; }
+    .rank-text { font: 800 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; fill: #38bdf8; }
+    .rank-circle-rim { stroke: #38bdf8; fill: none; stroke-width: 6; opacity: 0.2; }
+    .rank-circle { stroke: #38bdf8; stroke-dasharray: 250; stroke-dashoffset: 40; fill: none; stroke-width: 6; stroke-linecap: round; }
+  </style>
+
+  <rect x="0.5" y="0.5" rx="10" height="194" width="466" fill="#060814" stroke="#38bdf8" stroke-opacity="0.25" />
+
+  <g transform="translate(25, 35)">
+    <text x="0" y="0" class="header">Rodrigo Felipe's GitHub Stats</text>
+  </g>
+
+  <g transform="translate(390, 102)">
+    <circle class="rank-circle-rim" cx="0" cy="0" r="38" />
+    <circle class="rank-circle" cx="0" cy="0" r="38" transform="rotate(-90)" />
+    <text x="0" y="8" text-anchor="middle" class="rank-text">${rank}</text>
+  </g>
+
+  <g transform="translate(25, 60)">
+    <!-- Total Stars -->
+    <g transform="translate(0, 0)">
+      <svg class="icon" viewBox="0 0 16 16" width="16" height="16">
+        <path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/>
+      </svg>
+      <text class="stat" x="25" y="13">Total Stars Earned:</text>
+      <text class="stat-val" x="210" y="13">${totalStars}</text>
+    </g>
+
+    <!-- Total Commits -->
+    <g transform="translate(0, 26)">
+      <svg class="icon" viewBox="0 0 16 16" width="16" height="16">
+        <path d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"/>
+      </svg>
+      <text class="stat" x="25" y="13">Total Commits (All):</text>
+      <text class="stat-val" x="210" y="13">${formattedCommits}</text>
+    </g>
+
+    <!-- Total PRs -->
+    <g transform="translate(0, 52)">
+      <svg class="icon" viewBox="0 0 16 16" width="16" height="16">
+        <path d="M7.177 3.073L9.573.677A.25.25 0 0110 .854v4.792a.25.25 0 01-.427.177L7.177 3.427a.25.25 0 010-.354zM3.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122v5.256a2.251 2.251 0 11-1.5 0V5.372A2.25 2.25 0 011.5 3.25zM11 2.5h-1V4h1a1 1 0 011 1v5.628a2.251 2.251 0 101.5 0V5A2.5 2.5 0 0011 2.5zm1 10.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM3.75 12a.75.75 0 100 1.5.75.75 0 000-1.5z"/>
+      </svg>
+      <text class="stat" x="25" y="13">Total PRs:</text>
+      <text class="stat-val" x="210" y="13">${totalPRs}</text>
+    </g>
+
+    <!-- Total Issues -->
+    <g transform="translate(0, 78)">
+      <svg class="icon" viewBox="0 0 16 16" width="16" height="16">
+        <path d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm9 3a1 1 0 11-2 0 1 1 0 012 0zm-.25-6.25a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"/>
+      </svg>
+      <text class="stat" x="25" y="13">Total Issues:</text>
+      <text class="stat-val" x="210" y="13">${totalIssues}</text>
+    </g>
+  </g>
+</svg>
+    `;
+
+    const outputDir = path.resolve('assets');
+    if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
+    const outputPath = path.join(outputDir, 'github-stats.svg');
+    fs.writeFileSync(outputPath, svg.trim(), 'utf-8');
+    console.log(`Generated stats successfully! Total Commits: ${formattedCommits}`);
+  } catch (err) {
+    console.error('Failed to generate stats:', err);
+    process.exit(1);
+  }
+}
+
+fetchStats();
