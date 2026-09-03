@@ -1,24 +1,41 @@
 <div align="center">
 
+  <!-- Banner do Universo Animado em Rotação -->
+  <img src="https://raw.githubusercontent.com/rodrigofelipe3/rodrigofelipe3/main/assets/universe-banner.svg" alt="Rodrigo Felipe - Fullstack Developer" width="100%" />
+
+  <br/><br/>
+
+  <!-- Links Rápidos e Contato -->
+  <a href="https://github.com/rodrigofelipe3?tab=repositories">
+    <img src="https://img.shields.io/badge/Ver_Repositórios-060814?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=060814&color=38bdf8" alt="Repositórios" />
+  </a>
+  <a href="https://www.linkedin.com">
+    <img src="https://img.shields.io/badge/LinkedIn-060814?style=for-the-badge&logo=linkedin&logoColor=38bdf8&labelColor=060814&color=38bdf8" alt="LinkedIn" />
+  </a>
+  <a href="mailto:contato@rodrigofelipe.dev">
+    <img src="https://img.shields.io/badge/Email-060814?style=for-the-badge&logo=gmail&logoColor=f43f5e&labelColor=060814&color=f43f5e" alt="Contato" />
+  </a>
+
+</div>
+
 <br/>
 
 ---
 
-### 👨‍🚀 &nbsp; Sobre Mim (Mission Log)
+### Perfil Profissional
 
-Meu nome é **Rodrigo Felipe**, desenvolvedor **Fullstack** .
+Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, com experiência na construção de aplicações web, APIs RESTful, microsserviços escaláveis e arquiteturas orientadas a eventos.
 
-- 🌌 &nbsp; **Especialidade Principal:** Construção de ecossistemas web end-to-end, APIs e microsserviços resilientes com **Node.js**, **NestJS** e **Next.js**.
-- 🛠️ &nbsp; **Modelagem & Dados:** Experiência prática em modelagem relacional e não-relacional com **PostgreSQL**, **MySQL**, **SQL Server**, **MongoDB** e **Prisma ORM**.
-- 🚀 &nbsp; **Multi-Linguagens:** Versatilidade em soluções corporativas com **C#** (.NET) e automações / pipelines de dados com **Python**.
-- ⚙️ &nbsp; **Arquitetura & Qualidade:** Clean Architecture, Domain-Driven Design (DDD), princípios SOLID, testes automatizados e containerização com Docker.
-- 🔭 &nbsp; **Portfólio Web 3D:** Confira a versão do [**meu portfólio no espaço com Three.js**](https://rodrigofelipe3.github.io/rodrigofelipe3/) com universo rotativo interativo!
+- **Desenvolvimento Web & Microsserviços:** Criação de soluções completas de ponta a ponta utilizando **Next.js**, **NestJS** e **Node.js**.
+- **Modelagem de Dados & Persistência:** Implementação de bancos de dados relacionais e não-relacionais com **PostgreSQL**, **MySQL**, **SQL Server** e **MongoDB**, integrados com **Prisma ORM**.
+- **Outras Linguagens:** Desenvolvimento em **C#** (.NET) para sistemas corporativos e scripts de automação e dados com **Python**.
+- **Boas Práticas:** Foco em Clean Architecture, SOLID, código desacoplado e testes automatizados.
 
 <br/>
 
 ---
 
-### 🪐 &nbsp; Constelação de Tecnologias &amp; Habilidades
+### Tecnologias &amp; Habilidades
 
 <br/>
 
@@ -26,7 +43,7 @@ Meu nome é **Rodrigo Felipe**, desenvolvedor **Fullstack** .
   <tr>
     <td width="50%" valign="top">
       <div align="center">
-        <h4>⚡ Back-end & Runtimes</h4>
+        <h4>Back-end &amp; Runtimes</h4>
         <img src="https://img.shields.io/badge/Node.js-060814?style=for-the-badge&logo=node.js&logoColor=34d399&labelColor=060814" alt="Node.js" />
         <img src="https://img.shields.io/badge/TypeScript-060814?style=for-the-badge&logo=typescript&logoColor=38bdf8&labelColor=060814" alt="TypeScript" />
         <img src="https://img.shields.io/badge/NestJS-060814?style=for-the-badge&logo=nestjs&logoColor=ea2845&labelColor=060814" alt="NestJS" />
@@ -38,7 +55,7 @@ Meu nome é **Rodrigo Felipe**, desenvolvedor **Fullstack** .
     </td>
     <td width="50%" valign="top">
       <div align="center">
-        <h4>⚛️ Front-end & Aplicações</h4>
+        <h4>Front-end</h4>
         <img src="https://img.shields.io/badge/Next.js-060814?style=for-the-badge&logo=next.js&logoColor=ffffff&labelColor=060814" alt="Next.js" />
         <img src="https://img.shields.io/badge/Vite-060814?style=for-the-badge&logo=vite&logoColor=646cff&labelColor=060814" alt="Vite" />
         <img src="https://img.shields.io/badge/React-060814?style=for-the-badge&logo=react&logoColor=38bdf8&labelColor=060814" alt="React" />
@@ -52,7 +69,7 @@ Meu nome é **Rodrigo Felipe**, desenvolvedor **Fullstack** .
   <tr>
     <td width="50%" valign="top">
       <div align="center">
-        <h4>🌌 Bancos de Dados & ORM</h4>
+        <h4>Bancos de Dados &amp; ORM</h4>
         <img src="https://img.shields.io/badge/Prisma_ORM-060814?style=for-the-badge&logo=prisma&logoColor=c084fc&labelColor=060814" alt="Prisma" />
         <img src="https://img.shields.io/badge/PostgreSQL-060814?style=for-the-badge&logo=postgresql&logoColor=336791&labelColor=060814" alt="PostgreSQL" />
         <br/>
@@ -63,7 +80,7 @@ Meu nome é **Rodrigo Felipe**, desenvolvedor **Fullstack** .
     </td>
     <td width="50%" valign="top">
       <div align="center">
-        <h4>🚀 Ferramentas & Infraestrutura</h4>
+        <h4>Ferramentas &amp; Infraestrutura</h4>
         <img src="https://img.shields.io/badge/Git-060814?style=for-the-badge&logo=git&logoColor=f05032&labelColor=060814" alt="Git" />
         <img src="https://img.shields.io/badge/GitHub-060814?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=060814" alt="GitHub" />
         <img src="https://img.shields.io/badge/Docker-060814?style=for-the-badge&logo=docker&logoColor=38bdf8&labelColor=060814" alt="Docker" />
@@ -78,33 +95,27 @@ Meu nome é **Rodrigo Felipe**, desenvolvedor **Fullstack** .
 
 <br/>
 
-<!-- Divisor Cósmico Animado -->
-
 <p align="center">
-  <img src="./assets/universe-orbit.svg" alt="Cosmic Orbit Divider" width="100%" />
+  <img src="https://raw.githubusercontent.com/rodrigofelipe3/rodrigofelipe3/main/assets/universe-orbit.svg" alt="Divisor Cósmico" width="100%" />
 </p>
 
 <br/>
 
 ---
 
-### 📊 &nbsp; Painel de Commits &amp; Atividade Cósmica
+### Commits &amp; Atividade no GitHub
 
 <br/>
 
-<!-- Gráfico de Commits e Atividade em Tempo Real -->
-
+<!-- Gráfico 3D de Contribuições -->
 <div align="center">
-  <h4>📈 Atividade de Commits ao Longo do Tempo</h4>
-  <a href="https://github.com/rodrigofelipe3">
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=rodrigofelipe3&theme=tokyo-night&area=true&hide_border=true&bg_color=060814&color=38bdf8&line=a855f7&point=f43f5e" width="95%" alt="Gráfico de Atividade de Commits" />
-  </a>
+  <h4>Gráfico 3D de Contribuições</h4>
+  <img src="https://raw.githubusercontent.com/rodrigofelipe3/rodrigofelipe3/main/profile-3d-contrib/profile-night-view.svg" width="95%" alt="Gráfico 3D de Contribuições" />
 </div>
 
 <br/>
 
 <!-- Estatísticas Gerais & Streak de Commits -->
-
 <div align="center">
   <table border="0">
     <tr>
@@ -133,10 +144,9 @@ Meu nome é **Rodrigo Felipe**, desenvolvedor **Fullstack** .
 
 ---
 
-### 🐍 &nbsp; Snake Cósmica Devorando Meus Commits
+### Grid de Commits
 
 <div align="center">
-  <p>Animação automatizada via GitHub Actions capturando cada commit realizado na galáxia:</p>
   <img src="https://raw.githubusercontent.com/rodrigofelipe3/rodrigofelipe3/output/github-contribution-grid-snake-dark.svg" alt="Snake Contribution Grid" width="100%" />
 </div>
 
@@ -144,6 +154,15 @@ Meu nome é **Rodrigo Felipe**, desenvolvedor **Fullstack** .
 
 ---
 
-### 📡 &nbsp; Conecte-se Comigo na Galáxia
+### Contato
 
 <div align="center">
+
+  <a href="https://github.com/rodrigofelipe3" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-rodrigofelipe3-060814?style=for-the-badge&logo=github&logoColor=ffffff&color=060814&labelColor=161b22" alt="GitHub" />
+  </a>
+  <a href="https://www.linkedin.com" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Rodrigo_Felipe-060814?style=for-the-badge&logo=linkedin&logoColor=38bdf8&color=060814&labelColor=161b22" alt="LinkedIn" />
+  </a>
+
+</div>
