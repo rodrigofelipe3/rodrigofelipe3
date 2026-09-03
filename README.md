@@ -12,8 +12,8 @@
   <a href="https://www.linkedin.com">
     <img src="https://img.shields.io/badge/LinkedIn-060814?style=for-the-badge&logo=linkedin&logoColor=38bdf8&labelColor=060814&color=38bdf8" alt="LinkedIn" />
   </a>
-  <a href="mailto:contato@rodrigofelipe.dev">
-    <img src="https://img.shields.io/badge/Email-060814?style=for-the-badge&logo=gmail&logoColor=f43f5e&labelColor=060814&color=f43f5e" alt="Contato" />
+  <a href="mailto:rodrigo.soeu@hotmail.com">
+    <img src="https://img.shields.io/badge/Email-060814?style=for-the-badge&logo=microsoftoutlook&logoColor=0078d4&labelColor=060814&color=0078d4" alt="Contato" />
   </a>
 
 </div>
@@ -167,3 +167,15 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
 ### Contato
 
 <div align="center">
+
+  <a href="https://github.com/rodrigofelipe3" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-rodrigofelipe3-060814?style=for-the-badge&logo=github&logoColor=ffffff&color=060814&labelColor=161b22" alt="GitHub" />
+  </a>
+  <a href="https://www.linkedin.com" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Rodrigo_Felipe-060814?style=for-the-badge&logo=linkedin&logoColor=38bdf8&color=060814&labelColor=161b22" alt="LinkedIn" />
+  </a>
+  <a href="mailto:rodrigo.soeu@hotmail.com">
+    <img src="https://img.shields.io/badge/Email-rodrigo.soeu@hotmail.com-060814?style=for-the-badge&logo=microsoftoutlook&logoColor=0078d4&color=060814&labelColor=161b22" alt="Email" />
+  </a>
+
+</div>
