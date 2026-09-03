@@ -1,17 +1,35 @@
 <div align="center">
 
+  <!-- Banner do Universo Animado em Rotação -->
+  <img src="https://raw.githubusercontent.com/rodrigofelipe3/rodrigofelipe3/main/assets/universe-banner.svg" alt="Rodrigo Felipe - Fullstack Developer" width="100%" />
+
+  <br/><br/>
+
+  <!-- Links Rápidos e Contato -->
+  <a href="https://github.com/rodrigofelipe3?tab=repositories">
+    <img src="https://img.shields.io/badge/Ver_Repositórios-060814?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=060814&color=38bdf8" alt="Repositórios" />
+  </a>
+  <a href="https://www.linkedin.com">
+    <img src="https://img.shields.io/badge/LinkedIn-060814?style=for-the-badge&logo=linkedin&logoColor=38bdf8&labelColor=060814&color=38bdf8" alt="LinkedIn" />
+  </a>
+  <a href="mailto:contato@rodrigofelipe.dev">
+    <img src="https://img.shields.io/badge/Email-060814?style=for-the-badge&logo=gmail&logoColor=f43f5e&labelColor=060814&color=f43f5e" alt="Contato" />
+  </a>
+
+</div>
+
 <br/>
 
 ---
 
 ### Perfil Profissional
 
-Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, com experiência na construção de aplicações web, APIs RESTful, microsserviços escaláveis e arquiteturas orientadas a eventos. Tenho experiência sólida em PHP, Laravel, VueJS 3.0, 
+Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, com ampla experiência na construção de aplicações web, APIs RESTful, microsserviços escaláveis e arquiteturas orientadas a eventos. Experiência sólida com **PHP**, **Laravel**, **Vue.js 3**, **Next.js**, **NestJS**, **Redis** e **RabbitMQ**.
 
-- **Desenvolvimento Web & Microsserviços:** Criação de soluções completas de ponta a ponta utilizando **Next.js**, **NestJS** e **Node.js**.
+- **Desenvolvimento Web & Microsserviços:** Criação de soluções completas de ponta a ponta utilizando **Next.js**, **NestJS**, **Node.js**, **PHP** e **Laravel**.
 - **Mensageria & Cache:** Arquiteturas orientadas a eventos e processamento assíncrono de filas com **RabbitMQ**, além de estratégias de cache distribuído e alta disponibilidade com **Redis**.
 - **Modelagem de Dados & Persistência:** Implementação de bancos de dados relacionais e não-relacionais com **PostgreSQL**, **MySQL**, **SQL Server** e **MongoDB**, integrados com **Prisma ORM**.
-- **Outras Linguagens:** Desenvolvimento em **C#** (.NET) para sistemas corporativos e scripts de automação e dados com **Python**.
+- **Multi-Linguagens:** Desenvolvimento em **C#** (.NET), **Python**, **PHP** e ecossistema JavaScript / TypeScript.
 - **Boas Práticas:** Foco em Clean Architecture, SOLID, código desacoplado e testes automatizados.
 
 <br/>
@@ -26,12 +44,15 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
   <tr>
     <td width="50%" valign="top">
       <div align="center">
-        <h4>Back-end & Runtimes</h4>
+        <h4>Back-end &amp; Runtimes</h4>
         <img src="https://img.shields.io/badge/Node.js-060814?style=for-the-badge&logo=node.js&logoColor=34d399&labelColor=060814" alt="Node.js" />
         <img src="https://img.shields.io/badge/TypeScript-060814?style=for-the-badge&logo=typescript&logoColor=38bdf8&labelColor=060814" alt="TypeScript" />
         <img src="https://img.shields.io/badge/NestJS-060814?style=for-the-badge&logo=nestjs&logoColor=ea2845&labelColor=060814" alt="NestJS" />
         <br/>
+        <img src="https://img.shields.io/badge/PHP-060814?style=for-the-badge&logo=php&logoColor=777bb4&labelColor=060814" alt="PHP" />
+        <img src="https://img.shields.io/badge/Laravel-060814?style=for-the-badge&logo=laravel&logoColor=ff2d20&labelColor=060814" alt="Laravel" />
         <img src="https://img.shields.io/badge/C%23-060814?style=for-the-badge&logo=csharp&logoColor=c084fc&labelColor=060814" alt="C#" />
+        <br/>
         <img src="https://img.shields.io/badge/Python-060814?style=for-the-badge&logo=python&logoColor=ffde57&labelColor=060814" alt="Python" />
         <img src="https://img.shields.io/badge/JavaScript-060814?style=for-the-badge&logo=javascript&logoColor=f7df1e&labelColor=060814" alt="JavaScript" />
       </div>
@@ -41,11 +62,13 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
         <h4>Front-end</h4>
         <img src="https://img.shields.io/badge/Next.js-060814?style=for-the-badge&logo=next.js&logoColor=ffffff&labelColor=060814" alt="Next.js" />
         <img src="https://img.shields.io/badge/Vite-060814?style=for-the-badge&logo=vite&logoColor=646cff&labelColor=060814" alt="Vite" />
-        <img src="https://img.shields.io/badge/React-060814?style=for-the-badge&logo=react&logoColor=38bdf8&labelColor=060814" alt="React" />
+        <img src="https://img.shields.io/badge/Vue.js_3-060814?style=for-the-badge&logo=vuedotjs&logoColor=4fc08d&labelColor=060814" alt="Vue.js 3" />
         <br/>
-        <img src="https://img.shields.io/badge/HTML5-060814?style=for-the-badge&logo=html5&logoColor=e34f26&labelColor=060814" alt="HTML5" />
-        <img src="https://img.shields.io/badge/CSS3-060814?style=for-the-badge&logo=css3&logoColor=1572b6&labelColor=060814" alt="CSS3" />
+        <img src="https://img.shields.io/badge/React-060814?style=for-the-badge&logo=react&logoColor=38bdf8&labelColor=060814" alt="React" />
         <img src="https://img.shields.io/badge/Tailwind_CSS-060814?style=for-the-badge&logo=tailwind-css&logoColor=38bdf8&labelColor=060814" alt="Tailwind CSS" />
+        <img src="https://img.shields.io/badge/HTML5-060814?style=for-the-badge&logo=html5&logoColor=e34f26&labelColor=060814" alt="HTML5" />
+        <br/>
+        <img src="https://img.shields.io/badge/CSS3-060814?style=for-the-badge&logo=css3&logoColor=1572b6&labelColor=060814" alt="CSS3" />
       </div>
     </td>
   </tr>
