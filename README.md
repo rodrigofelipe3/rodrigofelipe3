@@ -1,32 +1,15 @@
 <div align="center">
 
-  <!-- Banner do Universo Animado em Rotação -->
-  <img src="https://raw.githubusercontent.com/rodrigofelipe3/rodrigofelipe3/main/assets/universe-banner.svg" alt="Rodrigo Felipe - Fullstack Developer" width="100%" />
-
-  <br/><br/>
-
-  <!-- Links Rápidos e Contato -->
-  <a href="https://github.com/rodrigofelipe3?tab=repositories">
-    <img src="https://img.shields.io/badge/Ver_Repositórios-060814?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=060814&color=38bdf8" alt="Repositórios" />
-  </a>
-  <a href="https://www.linkedin.com">
-    <img src="https://img.shields.io/badge/LinkedIn-060814?style=for-the-badge&logo=linkedin&logoColor=38bdf8&labelColor=060814&color=38bdf8" alt="LinkedIn" />
-  </a>
-  <a href="mailto:contato@rodrigofelipe.dev">
-    <img src="https://img.shields.io/badge/Email-060814?style=for-the-badge&logo=gmail&logoColor=f43f5e&labelColor=060814&color=f43f5e" alt="Contato" />
-  </a>
-
-</div>
-
 <br/>
 
 ---
 
 ### Perfil Profissional
 
-Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, com experiência na construção de aplicações web, APIs RESTful, microsserviços escaláveis e arquiteturas orientadas a eventos.
+Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, com experiência na construção de aplicações web, APIs RESTful, microsserviços escaláveis e arquiteturas orientadas a eventos. Tenho experiência sólida em PHP, Laravel, VueJS 3.0, 
 
 - **Desenvolvimento Web & Microsserviços:** Criação de soluções completas de ponta a ponta utilizando **Next.js**, **NestJS** e **Node.js**.
+- **Mensageria & Cache:** Arquiteturas orientadas a eventos e processamento assíncrono de filas com **RabbitMQ**, além de estratégias de cache distribuído e alta disponibilidade com **Redis**.
 - **Modelagem de Dados & Persistência:** Implementação de bancos de dados relacionais e não-relacionais com **PostgreSQL**, **MySQL**, **SQL Server** e **MongoDB**, integrados com **Prisma ORM**.
 - **Outras Linguagens:** Desenvolvimento em **C#** (.NET) para sistemas corporativos e scripts de automação e dados com **Python**.
 - **Boas Práticas:** Foco em Clean Architecture, SOLID, código desacoplado e testes automatizados.
@@ -43,7 +26,7 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
   <tr>
     <td width="50%" valign="top">
       <div align="center">
-        <h4>Back-end &amp; Runtimes</h4>
+        <h4>Back-end & Runtimes</h4>
         <img src="https://img.shields.io/badge/Node.js-060814?style=for-the-badge&logo=node.js&logoColor=34d399&labelColor=060814" alt="Node.js" />
         <img src="https://img.shields.io/badge/TypeScript-060814?style=for-the-badge&logo=typescript&logoColor=38bdf8&labelColor=060814" alt="TypeScript" />
         <img src="https://img.shields.io/badge/NestJS-060814?style=for-the-badge&logo=nestjs&logoColor=ea2845&labelColor=060814" alt="NestJS" />
@@ -69,10 +52,12 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
   <tr>
     <td width="50%" valign="top">
       <div align="center">
-        <h4>Bancos de Dados &amp; ORM</h4>
+        <h4>Bancos de Dados, Cache & Mensageria</h4>
         <img src="https://img.shields.io/badge/Prisma_ORM-060814?style=for-the-badge&logo=prisma&logoColor=c084fc&labelColor=060814" alt="Prisma" />
         <img src="https://img.shields.io/badge/PostgreSQL-060814?style=for-the-badge&logo=postgresql&logoColor=336791&labelColor=060814" alt="PostgreSQL" />
+        <img src="https://img.shields.io/badge/Redis-060814?style=for-the-badge&logo=redis&logoColor=dc382d&labelColor=060814" alt="Redis" />
         <br/>
+        <img src="https://img.shields.io/badge/RabbitMQ-060814?style=for-the-badge&logo=rabbitmq&logoColor=ff6600&labelColor=060814" alt="RabbitMQ" />
         <img src="https://img.shields.io/badge/MySQL-060814?style=for-the-badge&logo=mysql&logoColor=00758f&labelColor=060814" alt="MySQL" />
         <img src="https://img.shields.io/badge/SQL_Server-060814?style=for-the-badge&logo=microsoft-sql-server&logoColor=cc292b&labelColor=060814" alt="SQL Server" />
         <img src="https://img.shields.io/badge/MongoDB-060814?style=for-the-badge&logo=mongodb&logoColor=47a248&labelColor=060814" alt="MongoDB" />
@@ -80,7 +65,7 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
     </td>
     <td width="50%" valign="top">
       <div align="center">
-        <h4>Ferramentas &amp; Infraestrutura</h4>
+        <h4>Ferramentas & Infraestrutura</h4>
         <img src="https://img.shields.io/badge/Git-060814?style=for-the-badge&logo=git&logoColor=f05032&labelColor=060814" alt="Git" />
         <img src="https://img.shields.io/badge/GitHub-060814?style=for-the-badge&logo=github&logoColor=ffffff&labelColor=060814" alt="GitHub" />
         <img src="https://img.shields.io/badge/Docker-060814?style=for-the-badge&logo=docker&logoColor=38bdf8&labelColor=060814" alt="Docker" />
@@ -108,6 +93,7 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
 <br/>
 
 <!-- Gráfico 3D de Contribuições -->
+
 <div align="center">
   <h4>Gráfico 3D de Contribuições</h4>
   <img src="https://raw.githubusercontent.com/rodrigofelipe3/rodrigofelipe3/main/profile-3d-contrib/profile-night-view.svg" width="95%" alt="Gráfico 3D de Contribuições" />
@@ -116,6 +102,7 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
 <br/>
 
 <!-- Estatísticas Gerais & Streak de Commits -->
+
 <div align="center">
   <table border="0">
     <tr>
@@ -157,12 +144,3 @@ Desenvolvedor **Fullstack** focado no ecossistema **Node.js** e **TypeScript**, 
 ### Contato
 
 <div align="center">
-
-  <a href="https://github.com/rodrigofelipe3" target="_blank">
-    <img src="https://img.shields.io/badge/GitHub-rodrigofelipe3-060814?style=for-the-badge&logo=github&logoColor=ffffff&color=060814&labelColor=161b22" alt="GitHub" />
-  </a>
-  <a href="https://www.linkedin.com" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-Rodrigo_Felipe-060814?style=for-the-badge&logo=linkedin&logoColor=38bdf8&color=060814&labelColor=161b22" alt="LinkedIn" />
-  </a>
-
-</div>
